@@ -9,8 +9,6 @@ namespace Car
         //尽可能多的走的更远
         //基因序列控制转向
         public Dictionary<int, float> gens;
-
-        
         
         //记录基因长度 用于交换基因序列
         int dnaLength;
@@ -26,8 +24,19 @@ namespace Car
             gens.Clear();
             for (int i = -10; i <= 10; i += 1)
             {
-                Debug.Log(i);
-                gens.Add(i, Random.Range(-90, 91));
+                if (i > 0)
+                {
+                    gens.Add(i, Random.Range(-90, 0));
+                }
+                else if (i == 0)
+                {
+                    gens.Add(i, 0);
+                }
+                else if (i < 0)
+                {
+                    gens.Add(i, Random.Range(0, 90));
+                }
+
             }
             
             dnaLength = gens.Count;

@@ -85,16 +85,15 @@ namespace Car
         {
             GameObject b = Instantiate(botPrefab, startingPos.position, this.transform.rotation);
             b.transform.Rotate(0, Mathf.Round(Random.Range(-90, 91) / 90) * 90, 0);
-            b.GetComponent<Brain>().Init();
+            b.GetComponent<Car>().Init();
             if (Random.Range(0, 100) < breedMutate)
             {
-                b.GetComponent<Brain>().dna
-                    .Combine(parent1.GetComponent<Brain>().dna, parent2.GetComponent<Brain>().dna);
+                b.GetComponent<Car>().dna
+                    .Combine(parent1.GetComponent<Car>().dna, parent2.GetComponent<Car>().dna);
             }
             return b;
         }
-
-
+        
         void Update()
         {
             elapsed += Time.deltaTime;
@@ -113,8 +112,8 @@ namespace Car
             float max = 0;
             foreach (GameObject g in sortedList)
             {
-                max = max > g.GetComponent<Brain>().effsFound ? max : g.GetComponent<Brain>().effsFound;
-                sum += (g.GetComponent<Brain>().effsFound);
+                max = max > g.GetComponent<Car>().lifeTime ? max : g.GetComponent<Car>().lifeTime;
+                sum += (g.GetComponent<Car>().lifeTime);
             }
 
             string eggsCollected = $"Generation:[{generation}] ||最长存货：[{max}] 总共存货：[{sum}]";
