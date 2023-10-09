@@ -24,19 +24,23 @@ namespace Car
             gens.Clear();
             for (int i = -10; i <= 10; i += 1)
             {
-                if (i > 0)
-                {
-                    gens.Add(i, Random.Range(-90, 0));
-                }
-                else if (i == 0)
-                {
-                    gens.Add(i, 0);
-                }
-                else if (i < 0)
-                {
-                    gens.Add(i, Random.Range(0, 90));
-                }
-
+                gens.Add(i, Random.Range(-45f, 45f));
+                
+                // if (i > 0)
+                // {
+                //     //gens.Add(i, Random.Range(-45f, 0f));
+                //     
+                // }
+                // else if (i == 0)
+                // {
+                //     //gens.Add(i, 0);
+                //     
+                // }
+                // else if (i < 0)
+                // {
+                //     //gens.Add(i, Random.Range(0f, 45f));
+                //
+                // }
             }
             
             dnaLength = gens.Count;
@@ -46,20 +50,14 @@ namespace Car
         {
             int i = 0;
             Dictionary<int, float> newGens = new Dictionary<int, float>();
+            bool reversal = false;
             foreach (var g in gens)
             {
-                if (i < dnaLength / 2)
-                {
-                    newGens.Add(g.Key, d1.gens[g.Key]);
-                }
-                else
-                {
-                    newGens.Add(g.Key, d2.gens[g.Key]);
-                }
-
+                if (Random.Range(0, 11) > 5) reversal = !reversal;
+                if ((i % 2 == 0) == reversal) newGens.Add(g.Key, d1.gens[g.Key]);
+                else newGens.Add(g.Key, d2.gens[g.Key]);
                 i++;
             }
-
             gens = newGens;
         }
 
