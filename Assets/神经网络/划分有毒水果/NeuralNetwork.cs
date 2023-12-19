@@ -19,6 +19,8 @@ namespace Fruit
             }
         }
 
+
+        //计算神经网络
         double[] CalCulateOutputs(double[] inputs)
         {
             foreach (var layer in layers)
@@ -29,6 +31,7 @@ namespace Fruit
             return inputs;
         }
 
+        //计算神经网络并返回最大值
         int Classify(double[] inouts)
         {
             double[] Outputs = CalCulateOutputs(inouts);

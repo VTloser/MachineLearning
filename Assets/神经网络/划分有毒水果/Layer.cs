@@ -5,11 +5,11 @@ using UnityEngine;
 
 namespace Fruit
 {
-    public class Layer
-    {
-        private int numNodesIn, numNodesOut;
-        private double[,] weights;
-        private double[] biases;
+    public class Layer //层
+    {                                                   
+        private int numNodesIn, numNodesOut;  //节点输入数量 节点输出数量  //上一层节点数量  本层节点数量
+        private double[,] weights;  //节点权重
+        private double[] biases;  //节点偏置
 
 
         public Layer(int numNodesIn, int numNodesOut)
@@ -22,6 +22,7 @@ namespace Fruit
             biases = new double[numNodesOut]; // 存在疑问 应该是numNodesIn
         }
 
+        //计算输出节点
         public double[] CalculateOutput(double[] inputs)
         {
             double[] activations = new double[numNodesOut];
@@ -39,10 +40,10 @@ namespace Fruit
             return activations;
         }
 
-
+        //标准化(激活)函数
         public double ActivetionFunc(double weightInput)
         {
-            return 1 / (1 + Math.Exp(-weightInput));
+            return 1 / (1 + Math.Exp(-weightInput)); //使用的是S函数
         }
 
 
